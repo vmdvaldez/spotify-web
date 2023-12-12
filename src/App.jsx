@@ -3,8 +3,8 @@ import './App.css'
 import TopSongs from './components/TopArtists';
 import TopArtists from './components/TopArtists';
 
-const CLIENTID = import.meta.env.VITE_CLIENT_ID;
-const CLIENTSECRET= import.meta.env.VITE_CLIENT_SECRET;
+const CLIENTID = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
+const CLIENTSECRET= import.meta.env.VITE_CLIENT_SECRET || process.env.VITE_CLIENT_SECRET;
 const REDIRECTURI="http://localhost:5173/";
 console.assert(CLIENTID && CLIENTSECRET);
 
@@ -42,7 +42,6 @@ function App() {
   return (
     <>
       {!token ? <div>LOGIN</div> :
-      
       <TopArtists token={token}/>
       
       }
