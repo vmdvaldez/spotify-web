@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
-
+import { useEffect, useRef, useState } from "react"
+import styles from '../styles/TopArtists.module.css'
 
 export default function TopArtists({token}){
-    const [artists, setArtists] = useState(null);
+    const [artists, setArtists] = useState([]);
+    const nextLink = useRef("");
 
     useEffect(()=>{
+        if(nextLink.current == null) return
         const getUsers = async () =>{
-            const url = "https://api.spotify.com/v1/me/top/artists"
+            const url = nextLink.current ? nextLink.current : "https://api.spotify.com/v1/me/top/artists"
             const resp = await fetch(url,{
                 method: "GET",
                 headers:{
@@ -19,23 +21,28 @@ export default function TopArtists({token}){
 
         getUsers().then(json=>{
             console.log(json)
-            const artistNames = json.items.map(item => item.name);
-
-            setArtists(json);
+            const artistNameImg = json.items.map(artist =>{
+                return {name: artist.name, img: artist.images[0].url};
+            })
+            setArtists(artists.concat(artistNameImg));
+            nextLink.current = json.next;
         })
 
-    }, []);
+    }, [nextLink.current, token]);
 
 
+    console.log(artists);
     return(
     <>
-        {!artists ? <div> LOADING </div> : 
-            <section>
-                <div>
-                    {artists.items.map(
+        {!artists.length ? <div> LOADING </div> : 
+            <section id="topArtists">
+                <div className={styles.artists}>
+                    {artists.map(
                         artist=>{
                         return (
-                            <img src={artist.images[0].url}/>
+                            <div key={artist.name} className={styles.artist} style={{backgroundImage: `url(${artist.img})`}}>
+                                <h1 className={styles.name}>{artist.name}</h1>
+                            </div>
                         )
                     })}
                 </div>
