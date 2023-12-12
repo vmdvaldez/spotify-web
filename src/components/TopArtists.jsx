@@ -21,7 +21,6 @@ export default function TopArtists({token}){
             console.log(json)
             const artistNames = json.items.map(item => item.name);
 
-            console.log(json);
             setArtists(json);
         })
 
