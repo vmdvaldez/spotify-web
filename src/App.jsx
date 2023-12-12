@@ -5,7 +5,7 @@ import TopArtists from './components/TopArtists';
 
 const CLIENTID = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
 const CLIENTSECRET= import.meta.env.VITE_CLIENT_SECRET || process.env.VITE_CLIENT_SECRET;
-const REDIRECTURI="http://localhost:5173/";
+const REDIRECTURI=import.meta.env.VITE_REDIRECT_URI || process.env.VITE_REDIRECT_URI;
 console.assert(CLIENTID && CLIENTSECRET);
 
 function App() {
