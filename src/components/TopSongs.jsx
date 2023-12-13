@@ -36,23 +36,28 @@ export default function TopSongs({token}){
     }, [nextLink.current, token]);
 
     console.log(songs)
+
+    let count = 0;
     return(
         <section id="topSongs">
             <div className={styles.songs}>
-                <table>
+                <table className={styles.tableContainer}>
                     <tr>
+                        <th>Number</th>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Artist</th>
-                        <th>Preview</th>
+                        {/* <th>Preview</th> */}
                     </tr>
                     {songs.map(song=>{
+                        count++;
                         return(
                             <tr key={song.name}>
-                                <td><img src={song.img}></img></td>
+                                <td>{count}</td>
+                                <td><div style={{backgroundImage: `url(${song.img})`}} className={styles.albumImg}></div></td>
                                 <td>{song.name}</td>
                                 <td>{song.artist.join(', ')}</td>
-                                <td><embed src={song.preview}></embed></td>
+                                {/* <td><audio controls src={song.preview}></audio></td> */}
                             </tr>
                         )
                     })}

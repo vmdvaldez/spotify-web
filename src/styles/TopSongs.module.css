@@ -1,0 +1,30 @@
+.songs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+}
+
+.tableContainer{
+    background-color: grey;
+}
+
+.tableContainer tr:nth-child(odd){
+    background-color: grey;
+}
+
+.tableContainer tr:nth-child(even){
+    background-color: white;
+}
+
+.tableContainer th,
+.tableContainer td{
+    text-align: center;
+}
+
+.albumImg{
+    aspect-ratio: 1/1;
+    width: 60px;
+    background-size: contain;
+}
