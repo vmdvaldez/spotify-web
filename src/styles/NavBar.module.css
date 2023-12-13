@@ -1,0 +1,17 @@
+
+
+.navItems{
+    display: flex;
+    list-style-type: none;
+    gap: 1%;
+    
+    color: white;
+}
+
+.navItems li{
+    padding: 10px;
+}
+
+.navItems li:hover{
+    background-color: red;
+}
