@@ -59,7 +59,7 @@ export default function TopSongs(){
     let count = 0;
     return(
         <section id="topSongs">
-            <Term setTerm={setTermRange}/>
+            <Term setTerm={setTermRange} term={term}/>
             <div className={styles.songs}>
                 <table className={styles.tableContainer}>
                     <tr>

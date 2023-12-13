@@ -17,7 +17,6 @@ export default function TopArtists(){
 
         const getUsers = async () =>{
             const url = nextLink.current ? nextLink.current : "https://api.spotify.com/v1/me/top/artists?"
-            console.log(url + '&'+ new URLSearchParams(term));
             const resp = await fetch(url + '&'+ new URLSearchParams(term),{
                 method: "GET",
                 headers:{
@@ -29,7 +28,6 @@ export default function TopArtists(){
         }
 
         getUsers().then(json=>{
-            console.log(json)
             const artistNameImg = json.items.map(artist =>{
                 return {name: artist.name, img: artist.images[0].url};
             })
@@ -50,12 +48,12 @@ export default function TopArtists(){
     }
 
 
-    console.log(artists);
+    // console.log(artists);
     return(
     <>
         {!artists.length ? <div> LOADING </div> : 
             <section id="topArtists">
-                <Term setTerm={setTermRange}/>
+                <Term setTerm={setTermRange} term={term}/>
                 <div className={styles.artists}>
                     {artists.map(
                         artist=>{

@@ -16,3 +16,8 @@
 .termNav li:hover{
     background-color: grey;
 }
+
+.termNav .active{
+    pointer-events: none;
+    color: red;
+}
