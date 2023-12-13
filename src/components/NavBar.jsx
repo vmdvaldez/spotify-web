@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom';
 import styles from '../styles/NavBar.module.css';
 
 export default function NavBar(){
     return(
         <nav id="nav">
             <ul className={styles.navItems}>
-                <li>Top Artists</li>
-                <li>Top Songs</li>
+                <Link to="topartists" className={styles.navItem}><li>Top Artists</li></Link>
+                <Link to="topsongs" className={styles.navItem}><li>Top Songs</li></Link>
             </ul>
         </nav>
     )

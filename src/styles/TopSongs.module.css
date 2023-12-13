@@ -8,6 +8,7 @@
 
 .tableContainer{
     background-color: grey;
+    border-collapse: collapse;
 }
 
 .tableContainer tr:nth-child(odd){
@@ -21,10 +22,12 @@
 .tableContainer th,
 .tableContainer td{
     text-align: center;
+    border: 1px solid black;
 }
 
 .albumImg{
     aspect-ratio: 1/1;
     width: 60px;
     background-size: contain;
+    /* object-fit: contain; */
 }

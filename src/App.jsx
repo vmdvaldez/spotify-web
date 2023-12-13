@@ -3,6 +3,7 @@ import './App.css'
 import TopArtists from './components/TopArtists';
 import TopSongs from './components/TopSongs';
 import NavBar from './components/NavBar';
+import { Outlet } from 'react-router';
 
 const CLIENTID = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
 const CLIENTSECRET= import.meta.env.VITE_CLIENT_SECRET || process.env.VITE_CLIENT_SECRET;
@@ -10,6 +11,7 @@ const REDIRECTURI=import.meta.env.VITE_REDIRECT_URI || process.env.VITE_REDIRECT
 console.assert(CLIENTID && CLIENTSECRET);
 
 const TOKEN_EXPIRATION = 3600 * 1000; // 3600s -> 3600000ms
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -53,8 +55,7 @@ function App() {
     <>
       <NavBar/>
       {!token ? <div>LOGIN</div> :
-        // <TopArtists token={token}/>
-        <TopSongs token={token}/>
+        <Outlet context={{token}}/>
       }
     </>
   )

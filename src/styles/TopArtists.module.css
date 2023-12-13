@@ -26,6 +26,6 @@
 
 @media (max-width:600px) {
     .artists{
-        grid-template-columns: repeat(3, minmax(150px,1fr));
+        grid-template-columns: repeat(2, minmax(150px,1fr));
     }
 }
