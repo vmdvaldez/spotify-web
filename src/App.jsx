@@ -1,6 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import './App.css'
 import TopArtists from './components/TopArtists';
+import TopSongs from './components/TopSongs';
 import NavBar from './components/NavBar';
 
 const CLIENTID = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
@@ -52,7 +53,8 @@ function App() {
     <>
       <NavBar/>
       {!token ? <div>LOGIN</div> :
-        <TopArtists token={token}/>
+        // <TopArtists token={token}/>
+        <TopSongs token={token}/>
       }
     </>
   )
