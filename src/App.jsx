@@ -1,8 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import './App.css'
-import TopArtists from './components/TopArtists';
-import TopSongs from './components/TopSongs';
 import NavBar from './components/NavBar';
+import Loading from './components/Loading';
 import { Outlet } from 'react-router';
 
 const CLIENTID = import.meta.env.VITE_CLIENT_ID || process.env.VITE_CLIENT_ID;
@@ -54,7 +53,7 @@ function App() {
   return (
     <>
       <NavBar/>
-      {!token ? <div>LOGIN</div> :
+      {!token ? <Loading/> :
         <Outlet context={{token}}/>
       }
     </>
