@@ -1,0 +1,20 @@
+.recents{
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.tableContainer{
+    width: 85vw;
+    border-collapse: collapse;
+}
+
+.tableContainer th,
+.tableContainer td{
+    text-align: center;
+    padding: 2px;
+}
+
+.tableContainer tr:hover{
+    background-color: grey;
+}

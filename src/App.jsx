@@ -33,7 +33,7 @@ function App() {
     }
     
     if(!storageToken){
-      const scope = 'user-top-read';
+      const scope = 'user-top-read user-read-recently-played';
       const queryString = new URLSearchParams({
           response_type: 'token',
           client_id: CLIENTID,

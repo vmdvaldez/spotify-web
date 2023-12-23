@@ -7,6 +7,7 @@ import {createBrowserRouter,RouterProvider, Navigate} from "react-router-dom";
 import App from './App.jsx'
 import TopArtists from './components/TopArtists.jsx';
 import TopSongs from './components/TopSongs.jsx';
+import RecentlyPlayed from './components/RecentlyPlayed.jsx';
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "topsongs",
         element: <TopSongs/>
+      },
+      {
+        path: "recentlyplayed",
+        element: <RecentlyPlayed/>
       }
     ]
   }
