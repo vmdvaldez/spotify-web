@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import styles from '../styles/TopArtists.module.css'
 import { useOutletContext } from "react-router";
+import { Link } from 'react-router-dom';
 import Term from "./Term";
 
 export default function TopArtists(){
@@ -28,8 +29,12 @@ export default function TopArtists(){
         }
 
         getUsers().then(json=>{
+            console.log(json)
             const artistNameImg = json.items.map(artist =>{
-                return {name: artist.name, img: artist.images[0].url};
+                return {
+                    id: artist.id,
+                    name: artist.name, 
+                    img: artist.images[0].url};
             })
             setArtists(artists.concat(artistNameImg));
             nextLink.current = json.next;
@@ -58,9 +63,17 @@ export default function TopArtists(){
                     {artists.map(
                         artist=>{
                         return (
-                            <div key={artist.name} className={styles.artist} style={{backgroundImage: `url(${artist.img})`}}>
+                            <Link 
+                                to={artist.id} 
+                                key={artist.name}
+                                state={token}
+                                > 
+                                <div 
+                                    className={styles.artist} 
+                                    style={{backgroundImage: `url(${artist.img})`}}>
                                 <h1 className={styles.name}>{artist.name}</h1>
                             </div>
+                            </Link>
                         )
                     })}
                 </div>

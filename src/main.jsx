@@ -8,6 +8,7 @@ import App from './App.jsx'
 import TopArtists from './components/TopArtists.jsx';
 import TopSongs from './components/TopSongs.jsx';
 import RecentlyPlayed from './components/RecentlyPlayed.jsx';
+import ArtistPage from './components/ArtistPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -20,7 +21,16 @@ const router = createBrowserRouter([
       },
       {
         path: "topartists",
-        element: <TopArtists/>
+        children: [
+          {
+            index: true, 
+            element:<TopArtists/>
+          },
+          {
+            path: ":artistId",
+            element: <ArtistPage/>
+          }
+        ]
       },
       {
         path: "topsongs",

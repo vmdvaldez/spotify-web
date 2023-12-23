@@ -17,6 +17,15 @@
 
 }
 
+.artists a:active,
+.artists a:visited,
+.artists a:link
+{
+    color: white;
+    text-decoration: none;
+}
+
+
 .name{
     flex: 1;
     font-size: clamp(0.6rem, 1vw, 2rem);
