@@ -36,7 +36,7 @@ export default function RecentlyPlayed(){
                 return(
                     {
                         name: item.track.name,
-                        artist: item.track.artists.map(artist=>artist.name).join(' '),
+                        artist: item.track.artists.map(artist=>artist.name).join(', '),
                         playedAt: new Date(item.played_at).toLocaleDateString("en-US", options)}
                 )
             })
@@ -57,6 +57,7 @@ export default function RecentlyPlayed(){
                     <tr>
                         <th>No</th>
                         <th>Name</th>
+                        <th>By</th>
                         <th>Last Played</th>
                     </tr>
                     {tracks.map(track=>{
@@ -65,6 +66,7 @@ export default function RecentlyPlayed(){
                         <tr key={track.playedAt}>
                             <td>{count}</td>
                             <td>{track.name}</td>
+                            <td>{track.artist}</td>
                             <td>{track.playedAt}</td>
                         </tr>
                         )
