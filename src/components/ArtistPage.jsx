@@ -128,7 +128,7 @@ export default function ArtistPage(){
                 <ul>
                     {artistAlbums.map(album=>{
                         return(
-                            <li><img src={album.img}/></li>
+                            <li key={album.id}><img src={album.img}/></li>
                         )
                     })}
                 </ul>
@@ -137,7 +137,7 @@ export default function ArtistPage(){
                 <ul>
                     {artistTracks.map(artist=>{
                         return(
-                            <li>{artist.name}</li>
+                            <li key={artist.id}>{artist.name}</li>
                         )
                     })}
                 </ul>
@@ -146,7 +146,7 @@ export default function ArtistPage(){
                 <ul>
                     {relArtists.map(artist=>{
                         return(
-                            <li><img src={artist.img}/></li>
+                            <li key={artist.id}><img src={artist.img}/></li>
                         )
                     })}
                 </ul>
