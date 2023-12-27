@@ -7,7 +7,8 @@ export default function ArtistPage(){
     const token = useLocation().state;
     const [artistInfo, setArtistInfo] = useState({});
     const [artistTracks, setartistTracks] = useState([]);
-    const [artistAlbums, setArtistAlbums] = useState([])
+    const [artistAlbums, setArtistAlbums] = useState([]);
+    const [relArtists, setRelArtist] = useState([]);
 
     useEffect(()=>{
         const getArtist = async () =>{
@@ -37,7 +38,7 @@ export default function ArtistPage(){
 
         const getArtistTopAlbums = async () =>{
             const url = `https://api.spotify.com/v1/artists/${artistId}/albums?`
-            const query = {market:"CA"} // TODO: check user market?
+            const query = {market:"CA", include_groups: "album"} // TODO: check user market?
             const resp = await fetch(url + new URLSearchParams(query),{
                 method: "GET",
                 headers:{
@@ -67,14 +68,14 @@ export default function ArtistPage(){
             ])
             .then(([artist, tracks, albums, relArtists])=>{
 
-                let aInfo = {
+                const aInfo = {
                     id: artist.id,
                     name: artist.name,
                     popularity: artist.popularity,
                     img: artist.images[0].url
                 }
 
-                let aTracks = tracks.tracks.map(t=>{
+                const aTracks = tracks.tracks.map(t=>{
                     return(
                         {
                             id: t.id,
@@ -85,7 +86,7 @@ export default function ArtistPage(){
                     )
                 })
 
-                let aAlbums = albums.items.map(album=>{
+                const aAlbums = albums.items.map(album=>{
                     return(
                         {
                             id: album.id,
@@ -98,19 +99,58 @@ export default function ArtistPage(){
                 });
 
 
+                const relArt = relArtists.artists.map(artist=>{
+                    return(
+                        {
+                            id: artist.id,
+                            name: artist.name,
+                            img: artist.images[0].url
+                        }
+                    )
+                })
 
                 setArtistInfo(aInfo);
                 setartistTracks(aTracks);
                 setArtistAlbums(aAlbums);
-                
-                console.log(relArtists)
+                setRelArtist(relArt);
             })
 
     },[token]);
 
+    console.log(artistAlbums)
     return(
         <section id="artistPage" className={styles.artist}>
-            <div>{artistId}</div>
+            <div>
+                <h1>{`${artistInfo.name} (Popularity: ${artistInfo.popularity})`}</h1>
+                <div><img src={artistInfo.img}/></div>
+            </div>
+            <div className={styles.albums}> 
+                <ul>
+                    {artistAlbums.map(album=>{
+                        return(
+                            <li><img src={album.img}/></li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    {artistTracks.map(artist=>{
+                        return(
+                            <li>{artist.name}</li>
+                        )
+                    })}
+                </ul>
+            </div>
+            <div className={styles.relArtists}>
+                <ul>
+                    {relArtists.map(artist=>{
+                        return(
+                            <li><img src={artist.img}/></li>
+                        )
+                    })}
+                </ul>
+            </div>
         </section>
     )
 }

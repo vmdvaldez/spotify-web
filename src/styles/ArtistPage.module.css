@@ -1,3 +1,17 @@
 .artist{
     color: white;
 }
+
+.albums ul,
+.relArtists ul{
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(auto-fit, 150px);
+}
+
+.albums ul li img,
+.relArtists ul li img
+{
+    aspect-ratio: 1/1;
+    height: 150px;
+}
