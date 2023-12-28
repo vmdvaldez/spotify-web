@@ -12,7 +12,7 @@ export default function Term({setTerm, term}){
             <li onClick={()=>setTerm('medium')} 
                 className={time == 'medium_term' ? styles.active : ''}>6 Months</li>
             <li onClick={()=>setTerm('long')}
-                className={time == 'long_term' ? styles.active : ''}>Years</li>
+                className={time == 'long_term' ? styles.active : ''}>All-Time   </li>
         </ul>
     )
 }

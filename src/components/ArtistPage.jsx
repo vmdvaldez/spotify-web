@@ -1,10 +1,12 @@
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import styles from '../styles/ArtistPage.module.css';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function ArtistPage(){
     const {artistId} = useParams();
-    const token = useLocation().state;
+    const token = window.localStorage.getItem('token');
+    console.log(`TOKEN: ${token}`)
     const [artistInfo, setArtistInfo] = useState({});
     const [artistTracks, setartistTracks] = useState([]);
     const [artistAlbums, setArtistAlbums] = useState([]);
@@ -146,7 +148,13 @@ export default function ArtistPage(){
                 <ul>
                     {relArtists.map(artist=>{
                         return(
-                            <li key={artist.id}><img src={artist.img}/></li>
+                            <Link 
+                                to={`/topartists/${artist.id}`}
+                                key={artist.id}
+                                reloadDocument
+                                >
+                                    <li key={artist.id}><img src={artist.img}/></li>
+                            </Link>
                         )
                     })}
                 </ul>

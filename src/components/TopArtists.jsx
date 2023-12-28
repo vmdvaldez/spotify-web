@@ -66,7 +66,6 @@ export default function TopArtists(){
                             <Link 
                                 to={artist.id} 
                                 key={artist.name}
-                                state={token}
                                 > 
                                 <div 
                                     className={styles.artist} 
